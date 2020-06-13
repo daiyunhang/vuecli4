@@ -61,8 +61,7 @@ export default {
 <style scoped lang="stylus">
 .User_Login {
   text-align: center;
-  max-width: 572px;
-  min-width: 330px;
+  width: 330px;
   background: #fff;
   border-radius: 10px;
   padding: 62px;
