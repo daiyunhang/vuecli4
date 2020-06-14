@@ -60,8 +60,8 @@ export default {
   },
   methods: {
     user() {
-      https.fetchGet("/users").then(data => {
-        this.tableData = data.data.data
+      https.fetchGet("/user").then(data => {
+        this.tableData = data.data
       });
     }
   }
