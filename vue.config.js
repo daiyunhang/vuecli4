@@ -17,7 +17,8 @@ module.exports = {
         proxy: {
             '/': {
                 // 目标 API 地址
-                target: 'http://localhost:7001',     //开发环境
+                target: 'http://39.206.230.46:7001',     //生产环境
+                // target: 'http://localhost:7001',     //开发环境
                 // 如果要代理 websockets
                 ws: true,
                 // 将主机标头的原点更改为目标URL
