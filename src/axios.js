@@ -6,7 +6,7 @@ axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;char
 axios.defaults.withCredentials = true;
 // console.log(process.env.NODE_ENV, '当前环境')
 
-const URL = '/api' // 请求地址
+// const URL = '/api' // 请求地址
 
 //POST传参序列化(添加请求拦截器)
 axios.interceptors.request.use((config) => {
@@ -40,7 +40,7 @@ axios.interceptors.response.use((res) => {
  */
 export function fetchPost(path, params) {
     return new Promise((resolve, reject) => {
-        axios.post(URL + path, params)
+        axios.post(path, params)
             .then(response => {
                 resolve(response);
             }, err => {
@@ -60,7 +60,7 @@ export function fetchPost(path, params) {
  */
 export function fetchGet(path, params) {
     return new Promise((resolve, reject) => {
-        axios.get(URL + path, { params: params })
+        axios.get(path, { params: params })
             .then(response => {
                 resolve(response)
             }, err => {
