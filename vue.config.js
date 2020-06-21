@@ -15,16 +15,16 @@ module.exports = {
         inline: false,  // 关闭热更新
         open: true, //配置自动启动浏览器
         proxy: {
-            '/': {
+            '/api': {
                 // 目标 API 地址
                 // target: 'http://39.106.230.46:7001/',     //生产环境
-                target: 'http://localhost:7001',     //开发环境
+                target: 'http://localhost:7001/',     //开发环境
                 // 如果要代理 websockets
                 ws: true,
                 // 将主机标头的原点更改为目标URL
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/': ""
+                    '^/api': "/api"
                 },
             }
         }
