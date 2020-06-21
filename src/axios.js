@@ -1,6 +1,8 @@
 /* eslint-disable */
 import axios from "axios"
 import qs from "qs"
+import router from "./router"
+import { Message } from 'element-ui';
 axios.defaults.timeout = 100000;//响应时间
 axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';        //配置请求头
 axios.defaults.withCredentials = true;
@@ -29,6 +31,15 @@ axios.interceptors.response.use((res) => {
     return res;
 }, (error) => {
     window.console.log('网络异常')
+    Message.error('登录已经过期，请重新登录')
+    console.log(router,'router')
+      setTimeout(function () {
+        router.replace({
+          path: '/login',
+          // 登录成功后跳入浏览的当前页面
+        //   query: {redirect: router.currentRoute.fullPath}
+        })
+      }, 500)
     return Promise.reject(error);
 });
 /**
@@ -42,7 +53,7 @@ export function fetchPost(path, params) {
     return new Promise((resolve, reject) => {
         axios.post(URL + path, params)
             .then(response => {
-                resolve(response);
+                resolve(response.data);
             }, err => {
                 reject(err);
             })
@@ -62,9 +73,10 @@ export function fetchGet(path, params) {
     return new Promise((resolve, reject) => {
         axios.get(URL + path, { params: params })
             .then(response => {
-                resolve(response)
+                resolve(response.data)
             }, err => {
                 reject(err)
+
             })
             .catch((error) => {
                 reject(error)

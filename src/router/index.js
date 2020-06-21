@@ -1,23 +1,30 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Login from "../views/Login.vue";
-
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
-    name: "Login",
-    component: Login
+    path: "/login",
+    name: "login",
+    component: () =>import(/* webpackChunkName: "login" */ "../views/login.vue")
   },
   {
-    path: "/home",
-    name: "Home",
-    // route level code-splitting
-    // this generates a separate chunk (home.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "home" */ "../views/Home.vue")
+    path: "/content",
+    name: "content",
+    component: () =>import(/* webpackChunkName: "content" */ "../views/content.vue"),
+    children:[
+      {
+        path:'/home',
+        name: "home",
+        component: () =>import(/* webpackChunkName: "home" */ "../views/modules/home.vue"),
+      },
+      {
+        path:'/content/authority',
+        name: "authority",
+        component: () =>import(/* webpackChunkName: "authority" */ "../views/modules/authority.vue"),
+      },
+    ]
+
   },
   //根目录情况下重定向login
   {
@@ -36,5 +43,10 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 });
+
+const originalPush = VueRouter.prototype.push
+   VueRouter.prototype.push = function push(location) {
+   return originalPush.call(this, location).catch(err => err)
+}
 
 export default router;

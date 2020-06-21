@@ -17,8 +17,8 @@ export default {
   name: "login",
   data() {
     return {
-      username: "", //储存用户名
-      password: "" //储存密码
+      username: "admin", //储存用户名
+      password: "123456" //储存密码
     };
   },
   mounted() {
@@ -50,10 +50,21 @@ export default {
     },
     login() {
       // 成功
-      this.$router.push({
-        path: "home"
-      });
-    }
+        https.fetchPost("/login",{
+          username:this.username,
+          password:this.password
+        }).then(data => {
+          if(data.code == 200){
+            this.$store.commit("TOKEN", data.data);
+            this.$router.push({
+              path: "home"
+            });
+          }else{
+            this.$message.error(data.data);
+          }
+        });
+    },
+    
   }
 };
 </script>
