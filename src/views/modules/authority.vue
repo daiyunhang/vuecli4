@@ -58,12 +58,12 @@
             <el-input v-model="create.nickname"></el-input>
           </el-form-item>
           <el-form-item label="权限">
-            <el-select v-model="create.authId" placeholder="请选择" style="width:100%">
+            <el-select v-model="create.roleId" placeholder="请选择" style="width:100%">
               <el-option
                 v-for="item in authList"
-                :key="item.authId"
+                :key="item.roleId"
                 :label="item.authName"
-                :value="item.authId"
+                :value="item.roleId"
               ></el-option>
             </el-select>
           </el-form-item>
@@ -93,7 +93,7 @@ export default {
         username: "",
         password: "",
         nickname: "",
-        authId: ""
+        roleId: ""
       },
       authList: []
     };
@@ -160,7 +160,7 @@ export default {
         username: this.create.username,
         password: this.create.password,
         nickname: this.create.nickname,
-        authId: this.create.authId
+        roleId: this.create.roleId
       };
       const { code, data, msg } = await this.$http.createUser(param);
       if (code == 200) {

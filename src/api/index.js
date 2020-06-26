@@ -25,7 +25,7 @@ const api = {
             username: param.username,
             password: param.password,
             nickname: param.nickname,
-            authId: param.authId,
+            roleId: param.roleId,
         })
     },
     // 删除用户
