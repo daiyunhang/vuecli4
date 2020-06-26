@@ -5,13 +5,14 @@ import store from "./store";
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import './styles/style.css'
-import axios from "./axios";
+// import http from '@/api/index'//api
+import api from './api/index'//api
 import QS from "qs";
 
 Vue.config.productionTip = false;
 
 // 引入axios，并加到原型链中
-Vue.prototype.axios = axios;
+Vue.prototype.$http = api;
 Vue.prototype.qs = QS;
 Vue.use(ElementUI);
 

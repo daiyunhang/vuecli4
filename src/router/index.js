@@ -19,7 +19,7 @@ const routes = [
         component: () =>import(/* webpackChunkName: "home" */ "../views/modules/home.vue"),
       },
       {
-        path:'/content/authority',
+        path:'/authority',
         name: "authority",
         component: () =>import(/* webpackChunkName: "authority" */ "../views/modules/authority.vue"),
       },

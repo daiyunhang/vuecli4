@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import https from "../axios";
 export default {
   name: "login",
   data() {
@@ -48,23 +47,22 @@ export default {
       }
       this.login();
     },
-    login() {
+    async login() {
       // 成功
-        https.fetchPost("/login",{
-          username:this.username,
-          password:this.password
-        }).then(data => {
-          if(data.code == 200){
-            this.$store.commit("TOKEN", data.data);
-            this.$router.push({
-              path: "home"
-            });
-          }else{
-            this.$message.error(data.data);
-          }
+      let param = {
+        username: this.username,
+        password: this.password
+      };
+      const { code, data } = await this.$http.login(param);
+      if (code == 200) {
+        this.$store.commit("TOKEN", data);
+        this.$router.push({
+          path: "home"
         });
-    },
-    
+      } else {
+        this.$message.error(data);
+      }
+    }
   }
 };
 </script>

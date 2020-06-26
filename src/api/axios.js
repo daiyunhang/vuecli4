@@ -1,7 +1,7 @@
 /* eslint-disable */
 import axios from "axios"
 import qs from "qs"
-import router from "./router"
+import router from "vue-router"
 import { Message } from 'element-ui';
 axios.defaults.timeout = 100000;//响应时间
 axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';        //配置请求头

@@ -13,7 +13,7 @@
       router
     >
       <div class="auth">
-        <img :src="users.imgUrl" alt="^_^"/>
+        <img :src="users.imgUrl" alt="^_^" />
         <span v-if="!isCollapse">{{users.auth}}</span>
       </div>
       <el-menu-item v-for="item in navList" :key="item.title" :index="item.path">
@@ -43,11 +43,10 @@
   </el-container>
 </template>
 <script>
-import https from "@/axios";
 export default {
   data() {
     return {
-       users: this.$store.getters.TOKEN,
+      users: this.$store.getters.TOKEN,
       isCollapse: false,
       navList: [
         {
@@ -57,22 +56,22 @@ export default {
         },
         {
           title: "权限管理",
-          path: "/content/authority",
+          path: "/authority",
           icon: "el-icon-document"
         }
       ],
       navselected: this.$route.path
     };
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
-    loginOut() {
-      https.fetchGet("/loginOut", {}).then(data => {
+    async loginOut() {
+      const { code, msg } = await this.$http.loginOut();
+      if (code == 200) {
         this.$router.push({
           path: "/login"
         });
-      });
+      }
     },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
@@ -133,12 +132,14 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  >img{
-    width 25px
+
+  >img {
+    width: 25px;
   }
-  >span{
-    display inline-block
-    margin-left 8px
+
+  >span {
+    display: inline-block;
+    margin-left: 8px;
   }
 }
 </style>

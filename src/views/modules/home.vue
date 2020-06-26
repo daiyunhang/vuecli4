@@ -1,28 +1,23 @@
 <template>
-  <div class="home">
-     {{users}}
-  </div>
+  <div class="home">{{users}}-{{users.role}}</div>
 </template>
 
 <script>
-import https from "@/axios";
 
 export default {
   name: "home",
   data() {
     return {
-      users: this.$store.getters.TOKEN,
+      users: this.$store.getters.TOKEN
     };
   },
-  methods: {
-   
-  }
+  methods: {}
 };
 </script>
 
 <style scoped lang="stylus">
-.home{
-  width 1000px
-  margin 0 auto
+.home {
+  width: 1000px;
+  margin: 0 auto;
 }
 </style>
